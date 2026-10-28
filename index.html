@@ -3,12 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
 <title>Gebäude 3D Gesundheitszentrum</title>
 <style>
-:root{--rot:#660000;--ink:#1a1a1a;--mute:#555;--line:#d4d4d4;--bg:#eef0f1}
+:root{--rot:#660000;--ink:#1a1a1a;--mute:#555;--line:#d4d0ca;--bg:#e9e6e1;--panel:#f3f1ee;--dunkel:#262220;color-scheme:light only}
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:var(--ink);background:var(--bg)}
-button,input,select{font-family:Arial,Helvetica,sans-serif;font-size:13px}
+button,input,select,option,textarea{font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1a1a1a}
+button{-webkit-appearance:none;appearance:none;-webkit-text-fill-color:currentColor}
 #top{position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;gap:14px;padding:0 14px;background:#fff;border-bottom:3px solid var(--rot)}
 .kick{color:var(--rot);letter-spacing:.12em;font-size:12px;font-weight:bold;text-transform:uppercase;line-height:1.1}
 #top h1{font-size:17px;margin:0;line-height:1.15}
@@ -90,6 +92,46 @@ table.t tr:nth-child(even) td{background:#F2F2F2}
 table.t tr.cl{cursor:pointer}table.t tr.cl:hover td{background:#fbeaea}
 #foot{position:absolute;left:0;right:0;bottom:0;height:24px;display:flex;justify-content:space-between;align-items:center;padding:0 12px;font-size:12px;color:#404040;background:#fff;border-top:1px solid var(--line)}
 #menu{display:none;border:1px solid var(--line);background:#fff;padding:6px 9px;border-radius:4px;cursor:pointer}
+
+/* ---- v7 Bedienelemente: Kontrast Hell/Dunkel als Haupttraeger, Rot nur fuer "aktiv", Gruppen als gemeinsame Flaeche ---- */
+#tabs button{color:#1a1a1a;background:#fff;border-color:#c9c3bb;font-weight:bold;min-height:34px}
+#tabs button.on{background:var(--rot);color:#fff;border-color:var(--rot)}
+#side{background:var(--panel);padding:10px 10px 16px;width:300px}
+#side .card{background:#fff;border:1px solid #e0dbd4;border-radius:8px;padding:9px 11px 11px;margin-bottom:9px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+#side h3{margin:0 0 8px;padding-bottom:6px;border-bottom:1px solid #eee9e2;font-size:11px;letter-spacing:.1em;color:var(--rot)}
+#side label{padding:4px 0;color:#1a1a1a;min-height:28px}
+input[type=checkbox]{accent-color:var(--rot);width:17px;height:17px;flex:none}
+input[type=range]{accent-color:var(--rot);width:100%;height:24px;margin:2px 0}
+.rng{color:#333}.cnt{color:#666}
+.seg{background:#ece8e2;border-radius:7px;padding:3px;gap:3px}
+.seg button{background:transparent;border:0;color:#1a1a1a;padding:6px 9px;border-radius:5px;min-height:30px}
+.seg button:hover{background:#fff}
+.seg button.on{background:var(--rot);color:#fff;font-weight:bold;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.btn{background:#fff;color:#1a1a1a;border:1px solid #b9b2a9;border-radius:6px;padding:6px 11px;min-height:32px}
+.btn:hover{border-color:var(--rot)}
+.btn.on{background:var(--dunkel);color:#fff;border-color:var(--dunkel)}
+.btn.rot{background:var(--rot);color:#fff;border-color:var(--rot);font-weight:bold}
+#such,#side select{color:#1a1a1a;background:#fff;border:1px solid #b9b2a9;border-radius:6px;padding:7px 9px;min-height:34px}
+#such::placeholder{color:#777}
+details.leg{background:#faf9f7}
+#toolbar{background:rgba(38,34,32,.9);padding:4px;border-radius:9px;gap:3px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+#toolbar .btn{background:transparent;color:#fff;border-color:transparent;box-shadow:none}
+#toolbar .btn:hover{background:rgba(255,255,255,.16)}
+#toolbar .btn.rot{background:var(--rot);color:#fff}
+#toolbar .btn.on{background:#fff;color:#1a1a1a}
+#hint{background:rgba(38,34,32,.82);color:#fff;padding:6px 10px;border-radius:6px}
+#walkbar{background:rgba(38,34,32,.92);color:#fff;border:0;border-top:3px solid var(--rot);border-radius:8px;padding:6px 8px}
+#walkbar b{color:#fff}
+#pad button{color:#1a1a1a;background:rgba(255,255,255,.95);border:1px solid #b9b2a9;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+#walkhelp{background:rgba(38,34,32,.82);color:#fff;border-radius:6px;padding:6px 10px}
+#info{color:#1a1a1a;border-radius:0 0 8px 8px}
+#info .x{color:#444}
+.acts button{color:var(--rot);background:#fff;min-height:32px}
+.acts button:hover{background:var(--rot);color:#fff}
+#kompass{background:rgba(255,255,255,.95)}
+.filter input,.filter select{color:#1a1a1a}
+#menu{color:#1a1a1a;min-height:34px}
+@media (max-width:760px){#side{width:270px}}
 @media (max-width:760px){#side{position:absolute;z-index:4;left:0;top:0;bottom:0;width:260px;transform:translateX(-100%);transition:transform .2s}#side.auf{transform:none}#menu{display:inline-block}#top h1{font-size:14px}#info{width:auto;left:10px}#mini{width:170px;height:100px;right:62px}#walkhelp{display:none}}
 </style>
 </head>
@@ -102,23 +144,23 @@ table.t tr.cl{cursor:pointer}table.t tr.cl:hover td{background:#fbeaea}
 <div id="main">
   <div id="v3d" class="view on">
     <div id="side">
-      <h3>Geschosse</h3>
+      <section class="card"><h3>Geschosse</h3>
       <div class="seg" id="nur"><button class="on" data-g="alle">Alle</button><button data-g="EG">EG</button><button data-g="1OG">1. OG</button><button data-g="2OG">2. OG</button></div>
       <label style="margin-top:4px"><input type="checkbox" id="f_EG" checked>Erdgeschoss</label>
       <label><input type="checkbox" id="f_1OG" checked>1. Obergeschoss</label>
       <label><input type="checkbox" id="f_2OG" checked>2. Obergeschoss</label>
       <div class="rng">Geschosse auseinanderziehen <span id="explv" class="cnt">0,0 m</span></div>
       <input type="range" id="expl" min="0" max="8" step="0.5" value="0">
-      <h3>Schnitt</h3>
+      </section><section class="card"><h3>Schnitt</h3>
       <div class="rng">Höhe (über FFOK EG) <span id="cuthv" class="cnt">aus</span></div>
       <input type="range" id="cuth" min="0" max="11" step="0.1" value="11">
       <div class="rng">Senkrecht von Westen <span id="cutxv" class="cnt">aus</span></div>
       <input type="range" id="cutx" min="-54" max="2" step="0.5" value="-54">
       <button class="btn" id="b_grund" style="margin-top:6px">Grundriss-Ansicht (Schnitt 1,30 m)</button>
-      <h3>Bauwerk</h3>
+      </section><section class="card"><h3>Bauwerk</h3>
       <label><input type="checkbox" id="b_wand" checked>Wände</label>
-      <label><input type="checkbox" id="b_raum" checked>Raumflächen nach Einheit</label>
-      <label><input type="checkbox" id="b_decke" checked>Böden / Decken</label>
+      <label><input type="checkbox" id="b_raum">Böden nach Einheit einfärben</label>
+      <label><input type="checkbox" id="b_decke" checked>Böden / Decken <span class="cnt">Holz · Fliese</span></label>
       <label><input type="checkbox" id="b_dach" checked>Dächer</label>
       <label><input type="checkbox" id="b_glas" checked>Glasdach über dem Luftraum</label>
       <label><input type="checkbox" id="b_stg" checked>Stiegenhaus neu <span class="cnt">nur ungeteilt</span></label>
@@ -130,18 +172,19 @@ table.t tr.cl{cursor:pointer}table.t tr.cl:hover td{background:#fbeaea}
       <div class="rng">Innenwände durchsichtig <span id="wopIv" class="cnt">0 %</span></div>
       <input type="range" id="wopI" min="0.05" max="1" step="0.05" value="1">
       <div class="seg" id="wvor" style="margin-top:6px"><button data-w="1,1">Alles fest</button><button data-w="0.15,1">Fassade durchsichtig</button><button data-w="0.15,0.35">Alles durchsichtig</button></div>
-      <h3>Elektro</h3>
+      </section><section class="card"><h3>Elektro</h3>
       <select id="farb"><option value="kat">Einfärben nach Kategorie</option><option value="kreis">Einfärben nach Verteiler / Kreis</option><option value="art">Einfärben nach Montageart</option></select>
       <div id="katlist" style="margin-top:6px"></div>
       <div class="rng">Symbolgröße</div><input type="range" id="symg" min="0.5" max="3" step="0.1" value="1">
       <label><input type="checkbox" id="b_durch">Symbole durch Wände sehen</label>
       <details class="leg"><summary>Legende aller Symbole</summary><div id="legende"></div></details>
       <div id="legfarb"></div>
-      <h3>Suchen</h3>
+      </section><section class="card"><h3>Suchen</h3>
       <input id="such" placeholder="Kennung, Raum oder Kreis, z. B. -F3.9"> <span id="treffer"></span>
       <div id="raumf">Nur Raum: <span></span><button title="Raumfilter aufheben">×</button></div>
-      <h3>Ansicht</h3>
+      </section><section class="card"><h3>Ansicht</h3>
       <div class="seg" id="views"><button data-v="3d">3D</button><button data-v="top">Draufsicht</button><button data-v="sued">Süd</button><button data-v="nord">Nord</button><button data-v="ost">Ost</button><button data-v="west">West</button></div>
+      </section>
       <p class="mute" style="margin-top:14px">Elektro: 261028_Montageplan-2OG_v4</p>
     </div>
     <div id="stage"><div id="labels"></div>
@@ -175,7 +218,7 @@ table.t tr.cl{cursor:pointer}table.t tr.cl:hover td{background:#fbeaea}
   </div></div>
   <div id="vstand" class="view"><div class="wrap"><h2>Stand und Quellen</h2><table class="t"><tr><th>Inhalt</th><th>Datei</th><th>Stand</th><th>Hinweis</th></tr><tr><td>Wände EG / 1. OG / 2. OG</td><td>Polierpläne als DWG: Polierplan EG Index A (07.10.2026) · Polierplan 1. OG Index F (22.10.2026) · Polierplan 2. OG Index E (22.10.2026)</td><td>28.10.2026 (DXF-Export)</td><td>Wände aus den Schraffuren der Polierpläne (Bestand, Neubau, Trockenbau); Dach linker Flügel und Glasdach (Luftraum) aus dem 2. OG-Plan.</td></tr><tr><td>Stiegenhaus neu – Auslässe</td><td>261006_REF_Stiegenhaus-3D-Gegenprobe_v6_bereinigt.html</td><td>06.10.2026</td><td>73 Auslässe/Einbauteile mit Prüfstand der Gegenprobe; Lage im Gebäude aus der Fertigteilwand im Polierplan 1. OG.</td></tr><tr><td>Elektro 1. + 2. OG</td><td>261028_Montageplan-2OG_v4_TE_SYMBOLE.csv</td><td>28.10.2026 19:35</td><td>644 Symbole 1. OG · 346 Symbole 2. OG — Export aus dem CAD-Montageplan. Deckenauslässe ohne Höhenangabe auf 2,8 m gesetzt [VERMUTUNG].</td></tr><tr><td>Stiegenhaus neu</td><td>_v15_export.json (Modell Jozef) · Polierplan PP_005</td><td>28.09.2026</td><td>Wände, Decken, Podeste, Läufe. Lage im Gebäude an der Wandschraffur eingepasst, Abweichung bis rund 0,2 m möglich [VERMUTUNG]. Einlagen = Planstand Einlegeplan v5 — das Fertigteilwerk setzt eigenes Material, der Ist-Stand kann abweichen.</td></tr></table><h2>Mengen je Geschoss</h2><table class="t"><tr><th>Kategorie</th><th>1. OG</th><th>2. OG</th></tr><tr><td>Leuchten</td><td>136</td><td>74</td></tr><tr><td>Sicherheits- / Rettungszeichenleuchten</td><td>67</td><td>36</td></tr><tr><td>Steckdosen</td><td>214</td><td>97</td></tr><tr><td>Datendosen</td><td>51</td><td>23</td></tr><tr><td>Schalter / Dimmer / Taster</td><td>41</td><td>24</td></tr><tr><td>Melder / Sensorik / Brandfall</td><td>25</td><td>16</td></tr><tr><td>Geräte / Antriebe / Wandauslässe</td><td>55</td><td>39</td></tr><tr><td>Erdung / Potentialausgleich</td><td>43</td><td>31</td></tr><tr><td>Sprechstellen</td><td>1</td><td>1</td></tr><tr><td>Verteiler</td><td>1</td><td>1</td></tr><tr><td>Einbauteile Stiegenhaus (Kasten, Durchführung, Leerdose)</td><td>10</td><td>4</td></tr></table><h2>Was das Modell nicht zeigt</h2><ul><li>Türen: Öffnung mit Sturz, wo im Plan ein Türbogen liegt (Höhe aus dem nächsten Text STUK, sonst 2,05 m); ohne Türbogen Öffnung in voller Höhe.</li><li>Dächer: alle Flächen, die vom Geschoss darüber nicht überdeckt sind; Glasdach V-förmig, Höhen angenommen (Ränder +7,35 m, Kehle +6,95 m) [VERMUTUNG].</li><li>Wände nur, wo der Polierplan sie schraffiert; reine Konturen ohne Schraffur sind nicht übernommen.</li><li>Fenster: Lage aus den Lücken der Außenwand im jeweiligen Polierplan; Brüstung 0,90 m, Sturz 2,40 m angenommen [VERMUTUNG].</li><li>Treppen im Bestand (Stiegenhaus alt, Mitteltreppe) aus den Stufenlinien der Pläne erzeugt; Laufrichtung und Podesthöhe angenommen [VERMUTUNG].</li><li>Geschosse: FFOK EG ±0,00 · 1. OG +3,60 · 2. OG +7,00 (Architekt); Decken vereinfacht 20 cm.</li><li>Raumflächen sind aus den Wänden und den Symbolen automatisch abgeleitet: Grenzen ungefähr, Flächenangaben keine Planflächen.</li><li>Begehen: Kollision nur mit Wänden und Stiegenhaus; Treppen sind nicht begehbar, das Geschoss wechselt per Knopf (Q / E).</li><li>Trassen und Leitungswege sind nicht dargestellt — die Symbole zeigen nur die Auslässe.</li><li>Grundlage ist ein Kandidat des Montageplans, kein freigegebener Plan. Maßgeblich bleibt der Plot in 02_Planung\03_Plaene\00_AKTUELL.</li></ul><p class="mute">Neu erzeugen: <code>99_Werkstatt\_lauf_261028_3D-Gebaeude\neu_bauen.bat</code> — holt den jeweils neuesten Montageplan-Export.</p></div></div>
 </div>
-<div id="foot"><span>TECHNE e.U. | Gebaeude-3D_v6 | 28.10.2026</span><span>Seite 1 von 1</span></div>
+<div id="foot"><span>TECHNE e.U. | Gebaeude-3D_v7 | 28.10.2026</span><span>Seite 1 von 1</span></div>
 <script>/**
  * @license
  * Copyright 2010-2021 Three.js Authors
@@ -213,9 +256,9 @@ var sun = new THREE.DirectionalLight(0xfff6e8, 0.75); sun.position.set(-35, 60, 
 sun.shadow.mapSize.set(2048, 2048); var sc = sun.shadow.camera; sc.left = -45; sc.right = 45; sc.top = 45; sc.bottom = -45; sc.near = 5; sc.far = 160; sun.shadow.bias = -0.0008;
 scene.add(sun);
 // Gelaende
-var ground = new THREE.Mesh(new THREE.PlaneGeometry(400, 400), new THREE.MeshLambertMaterial({ color: 0xd2d8c8 }));
+var ground = new THREE.Mesh(new THREE.PlaneGeometry(400, 400), new THREE.MeshLambertMaterial({ color: 0xa9b598 }));
 ground.rotation.x = -Math.PI / 2; ground.position.y = -0.22; ground.receiveShadow = true; scene.add(ground);
-var grid = new THREE.GridHelper(200, 40, 0xc5cabc, 0xd3d7cb); grid.position.y = -0.21; scene.add(grid);
+var grid = new THREE.GridHelper(200, 40, 0x9aa68a, 0xa2ad93); grid.position.y = -0.21; scene.add(grid);
 
 // Weltrahmen: Plan X -> x, Plan Y -> -z, Hoehe -> y (Plangruppen um -90 Grad um x gedreht)
 var CEN = D.cen, FL = D.floors, ORD = ['EG', '1OG', '2OG'];
@@ -229,25 +272,58 @@ ORD.forEach(function (k) { G[k] = { root: new THREE.Group() }; scene.add(G[k].ro
 var CUT_H = new THREE.Plane(new THREE.Vector3(0, -1, 0), 1000), CUT_V = new THREE.Plane(new THREE.Vector3(1, 0, 0), 1000);
 var CLIP = [CUT_H, CUT_V];
 var MAT = {
-  wall: new THREE.MeshLambertMaterial({ color: 0xf3efe8, transparent: true, opacity: 1, clippingPlanes: CLIP, side: THREE.DoubleSide }),
+  wall: new THREE.MeshLambertMaterial({ color: 0xf2f0ec, transparent: true, opacity: 1, clippingPlanes: CLIP, side: THREE.DoubleSide }),
   krone: new THREE.MeshLambertMaterial({ color: 0x5b534c, transparent: true, opacity: 1, clippingPlanes: CLIP }),
-  wallA: new THREE.MeshLambertMaterial({ color: 0xe6dfd3, transparent: true, opacity: 1, clippingPlanes: CLIP, side: THREE.DoubleSide }),
+  wallA: new THREE.MeshLambertMaterial({ color: 0xe9e4dc, transparent: true, opacity: 1, clippingPlanes: CLIP, side: THREE.DoubleSide }),
   kroneA: new THREE.MeshLambertMaterial({ color: 0x4a433d, transparent: true, opacity: 1, clippingPlanes: CLIP }),
   edgeA: new THREE.LineBasicMaterial({ color: 0x6a6056, transparent: true, opacity: 0.5, clippingPlanes: CLIP }),
-  dach: new THREE.MeshLambertMaterial({ color: 0x8e8a84, clippingPlanes: CLIP }),
+  dach: new THREE.MeshLambertMaterial({ color: 0x7c7e7f, clippingPlanes: CLIP }),
+  sockel: new THREE.MeshLambertMaterial({ color: 0x5f5750, transparent: true, opacity: 1, clippingPlanes: CLIP, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -4 }),
+  sockelA: new THREE.MeshLambertMaterial({ color: 0x5f5750, transparent: true, opacity: 1, clippingPlanes: CLIP, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -4 }),
   glas: new THREE.MeshLambertMaterial({ color: 0x8fb9d6, transparent: true, opacity: 0.38, depthWrite: false, clippingPlanes: CLIP, side: THREE.DoubleSide }),
   rahmen: new THREE.LineBasicMaterial({ color: 0x3d4a55, clippingPlanes: CLIP }),
   slab: new THREE.MeshLambertMaterial({ color: 0xc9c6bf, clippingPlanes: CLIP }),
   roof: new THREE.MeshLambertMaterial({ color: 0x8f8a82, transparent: true, opacity: 0.85, clippingPlanes: CLIP }),
   edge: new THREE.LineBasicMaterial({ color: 0x6a6056, transparent: true, opacity: 0.5, clippingPlanes: CLIP })
 };
-var UCOL = { 'ORDI D': 0xd7e8f4, 'ORDI E': 0xe4f0d6, 'ORDI F': 0xf6e6cf, 'ORDI G': 0xe9def1, 'ORDI H': 0xd8efe9, 'ORDI A': 0xf3dfdf, 'ORDI B': 0xe2e2f5, 'ORDI C': 0xf1efd0, 'Allgemein': 0xe9e7e2, '': 0xdedbd4 };
-var umat = {};
-var FLIESE = (function () { var c = document.createElement('canvas'); c.width = c.height = 128; var x = c.getContext('2d'); x.fillStyle = '#ffffff'; x.fillRect(0, 0, 128, 128);
-  x.fillStyle = 'rgba(0,0,0,.035)'; for (var i = 0; i < 400; i++) x.fillRect(Math.random() * 128, Math.random() * 128, 2, 2);
-  x.strokeStyle = 'rgba(0,0,0,.13)'; x.lineWidth = 2; x.strokeRect(0, 0, 128, 128);
-  var tx = new THREE.CanvasTexture(c); tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(1 / 0.6, 1 / 0.6); tx.anisotropy = 4; return tx; })();
-function uMat(u) { return umat[u] || (umat[u] = new THREE.MeshLambertMaterial({ color: UCOL[u] != null ? UCOL[u] : 0xe0e0e0, map: FLIESE, clippingPlanes: CLIP })); }
+// Bodenbelag: Einheiten = Holzdielen (Eiche), Allgemeinflaechen = Feinsteinzeug 60x60 [Darstellung, kein Planinhalt]
+// Hell-Dunkel-Abstand zur Wand ist der tragende Kontrast (Gegenfarbkanal Hell/Dunkel), Farbton nur Zusatz
+var UCOL = { 'ORDI D': 0x6fa8dc, 'ORDI E': 0x93c47d, 'ORDI F': 0xf0a64a, 'ORDI G': 0xb08fd8, 'ORDI H': 0x5fc2b0, 'ORDI A': 0xe58b8b, 'ORDI B': 0x8e9ae6, 'ORDI C': 0xe2cc55, 'Allgemein': 0xffffff, '': 0xffffff };
+var umat = {}, TINT = false, WTINT = false;
+function zufall(seed) { var q = seed; return function () { q = (q * 16807) % 2147483647; return q / 2147483647; }; }
+var HOLZ = (function () {   // 1,20 m x 1,20 m = 8 Dielen zu 15 cm, Stoesse versetzt
+  var S = 512, c = document.createElement('canvas'); c.width = c.height = S; var x = c.getContext('2d'), rnd = zufall(11), N = 8, h = S / N;
+  for (var r = 0; r < N; r++) {
+    var st = rnd() * S, stoss = [st, st + S * (0.42 + rnd() * 0.16)];
+    for (var j = 0; j < 2; j++) {
+      var a = stoss[j], b = j ? stoss[0] + S : stoss[1], L = 43 + rnd() * 10, Hh = 28 + rnd() * 6, Ss = 26 + rnd() * 10;
+      [-S, 0].forEach(function (o) {
+        x.fillStyle = 'hsl(' + Hh + ',' + Ss + '%,' + L + '%)'; x.fillRect(a + o, r * h, b - a, h);
+        for (var g = 0; g < 9; g++) { var y0 = r * h + 2 + rnd() * (h - 4), amp = 0.6 + rnd() * 1.6, ph = rnd() * 6;
+          x.strokeStyle = 'rgba(70,42,20,' + (0.06 + rnd() * 0.12) + ')'; x.lineWidth = 0.6 + rnd() * 1.2; x.beginPath();
+          for (var t = a; t <= b; t += 8) { var yy = y0 + Math.sin(t / 37 + ph) * amp; if (t === a) x.moveTo(t + o, yy); else x.lineTo(t + o, yy); } x.stroke(); }
+      });
+      x.fillStyle = 'rgba(45,28,15,.55)'; x.fillRect(((a % S) + S) % S, r * h, 2, h);
+    }
+    x.fillStyle = 'rgba(45,28,15,.5)'; x.fillRect(0, r * h, S, 1.5);
+  }
+  var tx = new THREE.CanvasTexture(c); tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(1 / 1.2, 1 / 1.2); tx.anisotropy = 8; return tx; })();
+var STEIN = (function () {   // 1,20 m x 1,20 m = 2 x 2 Platten 60 x 60, warmgrau
+  var S = 256, c = document.createElement('canvas'); c.width = c.height = S; var x = c.getContext('2d'), rnd = zufall(5);
+  for (var i = 0; i < 2; i++) for (var j = 0; j < 2; j++) { var L = 58 + rnd() * 6; x.fillStyle = 'hsl(34,7%,' + L + '%)'; x.fillRect(i * 128, j * 128, 128, 128); }
+  for (var k = 0; k < 2600; k++) { x.fillStyle = rnd() < 0.5 ? 'rgba(255,255,255,.07)' : 'rgba(0,0,0,.07)'; x.fillRect(rnd() * S, rnd() * S, 1.5, 1.5); }
+  x.fillStyle = 'rgba(70,64,58,.65)'; [0, 128].forEach(function (p) { x.fillRect(p, 0, 2, S); x.fillRect(0, p, S, 2); });
+  var tx = new THREE.CanvasTexture(c); tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(1 / 1.2, 1 / 1.2); tx.anisotropy = 8; return tx; })();
+var LINO = (function () {   // heller Belag nur fuer die Einheits-Lasur (Farbe bleibt ablesbar)
+  var S = 256, c = document.createElement('canvas'); c.width = c.height = S; var x = c.getContext('2d'), rnd = zufall(3);
+  x.fillStyle = '#f4f2ee'; x.fillRect(0, 0, S, S); for (var k = 0; k < 1800; k++) { x.fillStyle = 'rgba(0,0,0,' + (0.03 + rnd() * 0.04) + ')'; x.fillRect(rnd() * S, rnd() * S, 1.5, 1.5); }
+  x.fillStyle = 'rgba(0,0,0,.18)'; x.fillRect(0, 0, S, 1.5); x.fillRect(0, 0, 1.5, S);
+  var tx = new THREE.CanvasTexture(c); tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(1 / 1.2, 1 / 1.2); tx.anisotropy = 8; return tx; })();
+function istAllg(u) { return !u || u === 'Allgemein'; }
+function uMat(u) { return umat[u] || (umat[u] = new THREE.MeshLambertMaterial({ color: 0xffffff, map: istAllg(u) ? STEIN : HOLZ, clippingPlanes: CLIP })); }
+function uFarbe(u, on) { var c = new THREE.Color(0xffffff); if (on && !istAllg(u) && UCOL[u] != null) c.lerp(new THREE.Color(UCOL[u]), 0.5); return c; }
+function bodenTint(on) { TINT = !!on; Object.keys(umat).forEach(function (u) { var m = umat[u]; m.color.copy(uFarbe(u, TINT)); m.map = TINT ? (istAllg(u) ? STEIN : LINO) : (istAllg(u) ? STEIN : HOLZ); m.needsUpdate = true; }); if (typeof dirty !== 'undefined') dirty = true; }
+function bodenHex(u) { var c = istAllg(u) ? new THREE.Color(0xa39d95) : TINT ? uFarbe(u, true) : new THREE.Color(0xa47b58); return '#' + c.getHexString(); }
 function shapeOf(p) {
   var s = new THREE.Shape(); p.o.forEach(function (q, i) { if (i) s.lineTo(q[0], q[1]); else s.moveTo(q[0], q[1]); });
   (p.h || []).forEach(function (h) { var hp = new THREE.Path(); h.forEach(function (q, i) { if (i) hp.lineTo(q[0], q[1]); else hp.moveTo(q[0], q[1]); }); s.holes.push(hp); });
@@ -270,6 +346,8 @@ ORD.forEach(function (k) {
   var f = FL[k], d = D.geo[k];
   G[k].wall = extr(d.walls, f.z, f.top - f.z, MAT.wall, true, true); G[k].root.add(G[k].wall);
   G[k].walla = extr(d.walls_a || [], f.z, f.top - f.z, MAT.wallA, true, true); G[k].root.add(G[k].walla);
+  var sk = extr(d.walls, f.z, 0.08, MAT.sockel, false, false); if (sk.userData.mesh) G[k].wall.add(sk.userData.mesh);
+  var skA = extr(d.walls_a || [], f.z, 0.08, MAT.sockelA, false, false); if (skA.userData.mesh) G[k].walla.add(skA.userData.mesh);
   G[k].tue = new THREE.Group(); G[k].root.add(G[k].tue); G[k].tueMesh = [];
   (d.tueren || []).forEach(function (t) { if (t.h >= f.top - f.z - 0.05) return; var s = extr([t.r], f.z + t.h, f.top - f.z - t.h, MAT.wall, true, true); G[k].tue.add(s); if (s.userData.mesh) G[k].tueMesh.push(s.userData.mesh); });
   G[k].slab = extr(d.slab, f.z - 0.2, 0.2, MAT.slab, false, true); G[k].root.add(G[k].slab);
@@ -291,12 +369,12 @@ ORD.forEach(function (k) {
 var ROOFM = [];
 ORD.forEach(function (k) { G[k].dach = new THREE.Group(); G[k].root.add(G[k].dach); });
 (D.daecher || []).forEach(function (d) { var r = extr(d.p, d.z, d.dz, MAT.dach, true, true); G[d.g].dach.add(r); if (r.userData.mesh) ROOFM.push(r.userData.mesh); });
-// Glasdach ueber dem Luftraum: V-foermig (Kehle in der Mitte der Laengsachse) [VERMUTUNG Hoehen: Raender +7,35, Kehle +6,95]
+// Glasdach ueber dem Luftraum: Satteldach, First in der Laengsachse [VERMUTUNG Hoehen: Traufen +7,10 = Dachoberkante 1. OG, First +7,85]
 var GLASV = new THREE.Group(); G['1OG'].root.add(GLASV);
 (D.glasdach || []).forEach(function (p) {
   var xs = p.o.map(function (q) { return q[0]; }), ys = p.o.map(function (q) { return q[1]; });
   var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs), y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
-  var laengsY = (y1 - y0) >= (x1 - x0), zR = 7.35, zK = 6.95, pg = planGroup(), v = [], lin = [];
+  var laengsY = (y1 - y0) >= (x1 - x0), zR = 7.10, zK = 7.85, pg = planGroup(), v = [], lin = [];
   function P(a, b, z) { return laengsY ? [a, b, z] : [b, a, z]; }
   var a0 = laengsY ? x0 : y0, a1 = laengsY ? x1 : y1, b0 = laengsY ? y0 : x0, b1 = laengsY ? y1 : x1, am = (a0 + a1) / 2;
   [[a0, zR, am, zK], [am, zK, a1, zR]].forEach(function (q) {
@@ -481,7 +559,7 @@ D.rooms.slice().sort(function (a, b) { return b.c - a.c; }).forEach(function (r)
   el.onclick = function () { var reg = null; (D.geo[r.g].regions || []).forEach(function (q) { if (q.n === r.n && (!reg || q.a > reg.a)) reg = q; }); raumInfo(r.g, r.n, reg); };
   LABS.push({ el: el, r: r });
 });
-var SHOWLAB = true, SEL = null;
+var SHOWLAB = true, SEL = null, SELT = 0;
 var selEl = document.createElement('div'); selEl.className = 'lb sel'; selEl.style.display = 'none'; LBL.appendChild(selEl);
 var MESSEL = document.createElement('div'); MESSEL.className = 'mlbs'; LBL.appendChild(MESSEL);
 
@@ -516,17 +594,19 @@ function startPunkt(k) {
   var pri = ['GANG', 'HALLE', 'EMPFANG', 'EINGANG'], best = null;   // groesste Gang-/Hallenflaeche, Punkt liegt sicher im freien Raum
   (D.geo[k].regions || []).forEach(function (r) { var n = r.n.toUpperCase(), p = pri.findIndex(function (q) { return n.indexOf(q) >= 0; }); if (p >= 0 && (!best || p < best.p || (p === best.p && r.a > best.a))) best = { p: p, a: r.a, x: r.x, y: r.y }; });
   if (best) return best;
+  (D.geo[k].regions || []).forEach(function (r) { if (!best || r.a > best.a) best = { a: r.a, x: r.x, y: r.y }; });   // ohne Raumnamen: groesste Flaeche
+  if (best) return best;
   var o = D.geo[k].slab[0].o, sx = 0, sy = 0; o.forEach(function (q) { sx += q[0]; sy += q[1]; }); return { x: sx / o.length, y: sy / o.length };
 }
 function walkStart(k, x, y) {
   if (MODE !== 'walk') {
     WSAVE = { f: ORD.map(function (q) { return $('#f_' + q).checked; }), expl: EXPL };
-    EXPL = 0; $('#expl').value = 0; $('#explv').textContent = '0,0 m';
+    EXPL = 0; $('#expl').value = 0; $('#explv').textContent = '0,0 m'; WTINT = TINT;
   }
   MODE = 'walk'; WALK.k = k || WALK.k;
   if (x == null) { var p = startPunkt(WALK.k); x = p.x; y = p.y; }
   WALK.x = x; WALK.y = y; WALK.pitch = 0;
-  cam.fov = 68; cam.near = 0.05; cam.updateProjectionMatrix(); amb.intensity = 0.1; lampe.intensity = 0.3; sun.castShadow = false; MAT.slab.color.setHex(0xf2f0ec); MAT.slab.emissive.setHex(0x6a6a66); symSicht();
+  cam.fov = 68; cam.near = 0.05; cam.updateProjectionMatrix(); amb.intensity = 0.1; lampe.intensity = 0.3; sun.castShadow = false; MAT.slab.color.setHex(0xf2f0ec); MAT.slab.emissive.setHex(0x6a6a66); bodenTint(false); Object.keys(umat).forEach(function (u) { umat[u].color.setScalar(istAllg(u) ? 0.8 : 0.68); }); MAT.krone.color.setHex(0xeeebe6); MAT.kroneA.color.setHex(0xe6e1d9); MAT.dach.color.setHex(0xf2f0ec); MAT.dach.emissive.setHex(0x6a6a66); symSicht();
   document.body.classList.add('walking'); $('#b_walk').classList.add('on'); walkEbene(); miniZeichnen(); info(null);
 }
 function walkEbene() {
@@ -542,9 +622,9 @@ function walkEbene() {
 function walkEnde() {
   if (MODE !== 'walk') return;
   MODE = 'orbit'; document.body.classList.remove('walking'); $('#b_walk').classList.remove('on');
-  ORD.forEach(function (q, i) { $('#f_' + q).checked = WSAVE.f[i]; G[q].wall.visible = G[q].walla.visible = G[q].tue.visible = G[q].fen.visible = $('#b_wand').checked; G[q].slab.visible = $('#b_decke').checked; G[q].reg.visible = $('#b_raum').checked;
+  ORD.forEach(function (q, i) { $('#f_' + q).checked = WSAVE.f[i]; G[q].wall.visible = G[q].walla.visible = G[q].tue.visible = G[q].fen.visible = $('#b_wand').checked; G[q].slab.visible = $('#b_decke').checked; G[q].reg.visible = $('#b_decke').checked;
     G[q].symg.visible = true; });
-  cam.fov = 40; cam.near = 0.1; cam.updateProjectionMatrix(); amb.intensity = 0; lampe.intensity = 0; sun.castShadow = $('#b_schatten').checked; MAT.slab.color.setHex(0xc9c6bf); MAT.slab.emissive.setHex(0x000000); setTimeout(symSicht, 0);
+  cam.fov = 40; cam.near = 0.1; cam.updateProjectionMatrix(); amb.intensity = 0; lampe.intensity = 0; sun.castShadow = $('#b_schatten').checked; MAT.slab.color.setHex(0xc9c6bf); MAT.slab.emissive.setHex(0x000000); bodenTint(WTINT); MAT.krone.color.setHex(0x5b534c); MAT.kroneA.color.setHex(0x4a433d); MAT.dach.color.setHex(0x7c7e7f); MAT.dach.emissive.setHex(0x000000); setTimeout(symSicht, 0);
   var e = p2w(WALK.x, WALK.y, FL[WALK.k].z); ORB.t.copy(e); ORB.r = 14; ORB.ph = 0.8; ORB.th = WALK.yaw;
   setFloors(); kamera();
 }
@@ -576,7 +656,7 @@ function miniZeichnen() {
   var c = document.createElement('canvas'); c.width = MINI.width; c.height = MINI.height; var x = c.getContext('2d');
   x.fillStyle = 'rgba(255,255,255,.92)'; x.fillRect(0, 0, c.width, c.height);
   function poly(L, fill) { L.forEach(function (p) { x.beginPath(); [p.o].concat(p.h || []).forEach(function (ring) { ring.forEach(function (q, i) { var m = mxy(q[0], q[1]); if (i) x.lineTo(m[0], m[1]); else x.moveTo(m[0], m[1]); }); x.closePath(); }); x.fillStyle = fill; x.fill('evenodd'); }); }
-  var d = D.geo[WALK.k]; poly(d.slab, '#e3e0d8'); (d.regions || []).forEach(function (r) { poly(r.p, '#' + ('000000' + (UCOL[r.u] || 0xdddddd).toString(16)).slice(-6)); }); poly(d.walls, '#5a5048');
+  var d = D.geo[WALK.k]; poly(d.slab, '#e3e0d8'); (d.regions || []).forEach(function (r) { poly(r.p, bodenHex(r.u)); }); poly(d.walls, '#5a5048');
   MBG = c;
 }
 function miniPunkt() {
@@ -622,7 +702,7 @@ function doppelklick(e) {
 function info(si) {
   var box = $('#info');
   if (si == null) { box.style.display = 'none'; SEL = null; selEl.style.display = 'none'; dirty = true; return; }
-  var s = SYM[si]; SEL = s; var k = KATBY[s.k];
+  var s = SYM[si]; SEL = s; SELT = performance.now(); var k = KATBY[s.k];
   var rows = [['Geschoss', FL[s.g].n], ['Raum', s.r], ['Raumart', s.ra], ['Typ', s.ty], ['Symbol', s.b], ['Verteiler / Kreis', s.sk], ['Montageart', s.a],
     ['Höhe', zahl(s.h) + ' m über FFOK' + (s.hq ? '' : ' — Annahme Decke [VERMUTUNG]')], ['LV-Pos.', s.lv], ['DALI', s.da], ['Lage (Plan)', 'X ' + zahl(s.x) + ' · Y ' + zahl(s.y)]];
   var gleich = s.sk ? SYM.filter(function (q) { return q.sk === s.sk; }).length : 0;
@@ -708,6 +788,11 @@ function loop(now) {
     if (vor || seit) schritt(vor, seit); if (dreh) WALK.yaw += dreh;
     walkKamera();
   }
+  if (SEL && SELT && typeof SPR !== 'undefined') {
+    var spS = SPR.filter(function (q) { return SYM[q.userData.si] === SEL; })[0];
+    if (spS && now - SELT < 2400) { spGroesse(spS, SEL, true); spS.scale.multiplyScalar(1 + 0.45 * Math.abs(Math.sin((now - SELT) / 170))); dirty = true; }
+    else { SELT = 0; symSicht(); }
+  }
   if (dirty) { dirty = false; zeichne(); }
   requestAnimationFrame(loop);
 }
@@ -770,14 +855,15 @@ $('#expl').oninput = function () { EXPL = +this.value; $('#explv').textContent =
 $('#b_wand').onchange = function () { ORD.forEach(function (k) { G[k].wall.visible = G[k].walla.visible = G[k].tue.visible = G[k].fen.visible = $('#b_wand').checked; }); dirty = true; };
 $('#symg').oninput = function () { SYMGROESSE = +this.value; symSicht(); };
 $('#b_durch').onchange = function () { DURCH = this.checked; symSicht(); };
-$('#b_decke').onchange = function () { ORD.forEach(function (k) { G[k].slab.visible = $('#b_decke').checked; }); dirty = true; };
-$('#b_raum').onchange = function () { ORD.forEach(function (k) { G[k].reg.visible = $('#b_raum').checked; }); dirty = true; };
+$('#b_decke').onchange = function () { ORD.forEach(function (k) { G[k].slab.visible = G[k].reg.visible = $('#b_decke').checked; }); dirty = true; };
+$('#b_raum').onchange = function () { bodenTint($('#b_raum').checked); };
 $('#b_dach').onchange = function () { dachSicht(); }; $('#b_glas').onchange = dachSicht; $('#b_stg').onchange = setFloors; $('#b_einl').onchange = setFloors;
 $('#b_lab').onchange = function () { SHOWLAB = this.checked; dirty = true; };
 $('#b_schatten').onchange = function () { sun.castShadow = this.checked; ren.shadowMap.needsUpdate = true; dirty = true; };
 function durchsicht() {   // getrennt fuer Aussen- und Innenwaende; das neue Stiegenhaus zaehlt zur Fassade
   var a = +$('#wopA').value, i = +$('#wopI').value;
   MAT.wallA.opacity = MAT.kroneA.opacity = a; MAT.wallA.depthWrite = MAT.kroneA.depthWrite = a > 0.95; MAT.edgeA.opacity = 0.15 + 0.35 * a;
+  MAT.sockelA.opacity = a; MAT.sockelA.depthWrite = a > 0.95; MAT.sockel.opacity = i; MAT.sockel.depthWrite = i > 0.95;
   MAT.wall.opacity = MAT.krone.opacity = i; MAT.wall.depthWrite = MAT.krone.depthWrite = i > 0.95; MAT.edge.opacity = 0.15 + 0.35 * i;
   Object.keys(STG.userData.mats).forEach(function (c) { var m = STG.userData.mats[c]; m.opacity = Math.max(a, 0.2); m.depthWrite = a > 0.95; });
   $('#wopAv').textContent = Math.round((1 - a) * 100) + ' %'; $('#wopIv').textContent = Math.round((1 - i) * 100) + ' %'; dirty = true;
@@ -870,6 +956,7 @@ groesse(); kamera(); symSicht(); ansicht('3d'); FLY = null; ORB.t.set(0, 4, 0); 
   var h = {}; location.hash.replace(/^#/, '').split('&').forEach(function (kv) { var p = kv.split('='); if (p[0]) h[p[0]] = decodeURIComponent(p[1] || ''); });
   if (h.g) { var b = document.querySelector('#nur button[data-g="' + h.g + '"]'); if (b) b.onclick(); }
   if (h.w) { wop.value = h.w; durchsicht(); }
+  if (h.u) { $('#b_raum').checked = true; bodenTint(true); }
   if (h.e) { $('#expl').value = h.e; $('#expl').oninput(); }
   if (h.c) { $('#cuth').value = h.c; schnitt(); }
   if (h.f) { $('#farb').value = h.f; $('#farb').onchange(); }
@@ -877,6 +964,7 @@ groesse(); kamera(); symSicht(); ansicht('3d'); FLY = null; ORB.t.set(0, 4, 0); 
   if (h.v) { ansicht(h.v); if (FLY) { FLY.s -= 10000; } }
   if (h.p) { var i = SYM.findIndex(function (s) { return s.t.indexOf(h.p) >= 0; }); if (i >= 0) info(i); }
   if (h.r) { var r = D.rooms.filter(function (q) { return q.n === h.r; })[0]; if (r) { var reg = null; (D.geo[r.g].regions || []).forEach(function (q) { if (q.n === r.n && (!reg || q.a > reg.a)) reg = q; }); raumInfo(r.g, r.n, reg); } }
+  if (h.cam) { var cq = h.cam.split(',').map(Number); ORB.t.copy(p2w(cq[0], cq[1], cq[2])); ORB.r = cq[3]; ORB.th = cq[4]; ORB.ph = cq[5]; FLY = null; kamera(); }
   if (h.walk) { walkStart(h.walk); if (h.yaw) WALK.yaw = +h.yaw; }
   if (h.tab) { var t = document.querySelector('#tabs button[data-v="' + h.tab + '"]'); if (t) t.onclick(); }
 })();
